@@ -1,0 +1,12 @@
+dbt_edp:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: oz49116
+      user: NITINRANE
+      role: ACCOUNTADMIN
+      database: ARCH_DEMO
+      warehouse: BCBS239_DEMO_WH
+      schema: PUBLIC
+      threads: 4

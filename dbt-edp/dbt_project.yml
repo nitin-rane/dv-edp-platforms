@@ -1,0 +1,30 @@
+name: 'dbt_edp'
+version: '1.0.0'
+
+profile: 'dbt_edp'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_edp:
+    staging:
+      +schema: staging
+      +materialized: view
+      +tags: ['staging', 'daily']
+    conform:
+      +schema: conform
+      +materialized: view
+      +tags: ['conform', 'daily']
+    analytics:
+      +schema: analytics
+      +materialized: table
+      +tags: ['analytics', 'daily']

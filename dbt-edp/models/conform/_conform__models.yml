@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: conf_orders
+    description: "Conformed order data with enriched customer information"
+    columns:
+      - name: order_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: order_amount
+        tests:
+          - not_null
+      - name: is_completed
+        description: "Boolean flag for completed orders"
+
+  - name: conf_customers
+    description: "Conformed customer data with standardized fields"
+    columns:
+      - name: customer_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: email
+        tests:
+          - unique
+          - not_null
+
+  - name: conf_products
+    description: "Conformed product data with price tier classification"
+    columns:
+      - name: product_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: price_tier
+        tests:
+          - accepted_values:
+              values: ['BUDGET', 'STANDARD', 'PREMIUM']
